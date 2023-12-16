@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopeController;
+use App\Http\Controllers\Dashboard\DashboardController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +18,7 @@ use App\Http\Controllers\ShopeController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('Zay.index');
 });
 
 Route::get('/dashboard', function () {
@@ -36,3 +38,15 @@ Route::get ('about',[ShopeController::class , 'about'] )->name('about');
 Route::get ('contact',[ShopeController::class , 'contact'] )->name('contact');
 Route::get ('shop',[ShopeController::class , 'shop'] )->name('shop');
 Route::get ('shopDetails',[ShopeController::class , 'shopSingle'] )->name('shopSingle');
+
+
+
+// ===============================dashboard routs =============================
+
+Route::prefix('dashboardPanel')->middleware(['auth','checkAdmin'])->name('dashboard.')->group(function(){
+
+Route::get ('/',[DashboardController::class,'index'] )->name('index');
+
+
+
+});
