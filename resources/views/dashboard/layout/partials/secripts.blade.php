@@ -32,3 +32,45 @@
  <script src="{{asset('dashboard/dist/js/demo.js')}}"></script>
  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
  <script src="{{asset('dashboard/dist/js/pages/dashboard.js')}}"></script>
+
+
+{{-- toaster --}}
+<script src="{{asset('assets/js/toastr.min.js')}}"></script>
+<script src="{{asset('assets/js/toastr.js.map')}}"></script>
+
+
+<script src="{{asset('assets/js/jquery-confirm.min.js')}}"></script>
+<script>
+    @if (session()->has('success'))
+    toastr.success('{{session()->get('success')}}');
+
+     @endif
+</script>
+
+{{-- jquery-confirm --}}
+{{-- <script>
+    $('button-delete-btn').on('click', function()){
+        $.confirm({
+    title: 'Confirm!',
+    content: 'Simple confirm!',
+    buttons: {
+        confirm: function () {
+            $.alert('Confirmed!');
+        },
+        cancel: function () {
+            $.alert('Canceled!');
+        },
+        somethingElse: {
+            text: 'Something else',
+            btnClass: 'btn-blue',
+            keys: ['enter', 'shift'],
+            action: function(){
+                $.alert('Something else?');
+            }
+        }
+    }
+});
+
+    }
+
+</script> --}}

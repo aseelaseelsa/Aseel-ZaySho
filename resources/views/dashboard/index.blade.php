@@ -1,4 +1,4 @@
-@extends('dashboard.layout.app')
+@extends('dashboard.layout.app',['title' => 'Dashboard'])
 @section('content')
                     <div class="row">
                         <div class="col-lg-3 col-6">
@@ -626,4 +626,8 @@
                     </div>
 
 @endsection
-                    
+
+@section('breadcrumb')
+@parent
+<li class="breadcrumb-item active">home page</li>
+@endsection

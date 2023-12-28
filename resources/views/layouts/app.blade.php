@@ -13,6 +13,12 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+{{-- toastr js --}}
+<link rel="stylesheet" href="{{asset('assets/css/toastr.min.css')}}">
+
+{{-- jquery-confirm --}}
+<link rel="stylesheet" href="{{asset('assets/css/jquery-confirm.min.css')}}">
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
@@ -31,6 +37,8 @@
             <main>
                 {{ $slot }}
             </main>
+            
         </div>
+
     </body>
 </html>

@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopeController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\ProductsController;
+use App\Http\Controllers\Front\FrontController;
 
 
 /*
@@ -17,21 +19,25 @@ use App\Http\Controllers\Dashboard\DashboardController;
 |
 */
 
-Route::get('/', function () {
-    return view('Zay.index');
+Route::controller(FrontController::class)->group(function(){
+    Route::get ('/','index')->name('homepage');
+
 });
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
-require __DIR__.'/auth.php';
+
+
+
+
+
+
 
 Route::get ('home',[ShopeController::class , 'index'] )->name('home.index');
 Route::get ('about',[ShopeController::class , 'about'] )->name('about');
@@ -41,12 +47,6 @@ Route::get ('shopDetails',[ShopeController::class , 'shopSingle'] )->name('shopS
 
 
 
-// ===============================dashboard routs =============================
 
-Route::prefix('dashboardPanel')->middleware(['auth','checkAdmin'])->name('dashboard.')->group(function(){
-
-Route::get ('/',[DashboardController::class,'index'] )->name('index');
-
-
-
-});
+require __DIR__.'/auth.php';
+require __DIR__.'/dashboard.php';

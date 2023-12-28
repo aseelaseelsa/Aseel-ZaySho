@@ -17,7 +17,7 @@
                 <a href="#" class="d-block ">{{auth()->user()->name}}</a>
                 <form action="{{route('logout')}}" method="POST">
                     @csrf
-<button class="btn btn-sm btn-danger "> Logout</button>
+<button class="btn btn-sm btn-danger mx-2"> Logout</button>
 </form>
             </div>
         </div>
@@ -43,15 +43,40 @@
        with font-awesome or any other icon font library -->
 
  <li class="nav-item">
-                    <a href="{{route('dashboard.index')}}" class="nav-link active ">
+                    <a href="{{route('dashboard.index')}}" @class([
+                        'nav-link',
+                        'active' => request()->routeIs('dashboard.index')
+                    ])
+
+                    >
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Dashboard
-                            <span class="right badge badge-danger">New</span>
                         </p>
                     </a>
                 </li>
-
+                <li class="nav-item">
+                    <a href="{{route('dashboard.categories.index')}}" @class([
+                        'nav-link',
+                        'active' => request()->routeIs('dashboard.categories.index')
+                    ]) >
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Categories
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('dashboard.products.index')}}" @class([
+                        'nav-link',
+                        'active' => request()->routeIs('dashboard.products.index')
+                    ])>
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Products
+                        </p>
+                    </a>
+                </li>
                     </ul>
                 </li>
 

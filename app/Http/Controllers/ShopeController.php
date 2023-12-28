@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Category;
+use App\Models\Product;
+
 
 use Illuminate\Http\Request;
 
@@ -20,12 +23,26 @@ class ShopeController extends Controller
     return view('Zay.contact');
                 }
 
-    public function shop (){
-    return view('Zay.shop');
+    public function shop (Request $requset){
+        $queryParams= $requset->query();
+        $mainCategories=Category::with(['childrens'])->whereNull('parent_id')->where('status',true)->get();
+        $products = Product::where('status',true)->get();
+         $productsQuery=Product::query();
 
-                        }
 
-    public function shopSingle (){
+//proudct fillteration
+if(isset($queryParams['category'])){
+    $productsQuery->where('category_id',$queryParams['category']);
+}
+$products = $productsQuery->where('status',true)->paginate(6);
+        return view('Zay.shop' , compact("mainCategories" , 'products' , 'products'));
+                       }
+
+
+
+
+
+                       public function shopSingle (){
 
     return view('Zay.shopSingle');
     }
