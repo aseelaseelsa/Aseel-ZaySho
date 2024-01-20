@@ -5,7 +5,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopeController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\ProductsController;
+
 use App\Http\Controllers\Front\FrontController;
+use App\Http\Controllers\Front\CartController;
+use App\Http\Controllers\Front\CheckoutController;
+use App\Http\Controllers\Dashboard\OrdersController;
+use App\Models\Order;
+
+
+
 
 
 /*
@@ -22,7 +30,9 @@ use App\Http\Controllers\Front\FrontController;
 Route::controller(FrontController::class)->group(function(){
     Route::get ('/','index')->name('homepage');
 
+
 });
+
 
 
 
@@ -36,17 +46,32 @@ Route::get('/dashboard', function () {
 
 
 
+Route::controller(ShopeController::class)->group(function(){
+Route::get ('/home', 'index' )->name('home.index');
+Route::get ('/about','about' )->name('about');
+Route::get ('/contact', 'contact' )->name('contact');
+Route::get ('/shop', 'shop' )->name('shop');
+Route::get ('/shopSingle/{id}', 'shopSingle' )->name('shopSingle');
+Route::get ('/order','order')->name('order');
+
+
+});
+
+Route::controller(CartController::class)->prefix('cart')->name('cart.')->middleware('auth')->group(function(){
+Route::get('/','index')->name('index');
+Route::get('/add/{id}','addToCartSession')->name('addToSession');
 
 
 
-Route::get ('home',[ShopeController::class , 'index'] )->name('home.index');
-Route::get ('about',[ShopeController::class , 'about'] )->name('about');
-Route::get ('contact',[ShopeController::class , 'contact'] )->name('contact');
-Route::get ('shop',[ShopeController::class , 'shop'] )->name('shop');
-Route::get ('shopDetails',[ShopeController::class , 'shopSingle'] )->name('shopSingle');
+});
+
+
+Route::controller(CheckoutController::class)->prefix('checkout')->name('checkout.')->middleware('auth')->group(function(){
+    Route::get('/','index')->name('index');
+    Route::post('/','store')->name('store');
 
 
 
-
+});
 require __DIR__.'/auth.php';
 require __DIR__.'/dashboard.php';

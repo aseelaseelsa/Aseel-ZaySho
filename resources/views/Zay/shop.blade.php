@@ -89,14 +89,30 @@ https://templatemo.com/tm-559-zay-shop
                     <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
                         <i class="fa fa-fw fa-search text-dark mr-2"></i>
                     </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="#">
+                    @auth
+                    <a class="nav-icon position-relative text-decoration-none" href="{{route('cart.index')}}">
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                         <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
                     </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="#">
+                    @endauth
+                    <a class="nav-icon position-relative text-decoration-none me-5" href="#">
                         <i class="fa fa-fw fa-user text-dark mr-3"></i>
                         <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
                     </a>
+                    @auth
+                    <form action="{{route('order')}}" class="me-2">
+
+                     <button class="btn btn-sm btn-success text-light  ">Orders</button>
+                    </form>
+
+                @endauth
+                    @auth
+                    <form action="{{route('logout')}}" method="POST" >
+                     @csrf
+                     <button class="btn btn-sm btn-dark text-light  ">Logout</button>
+                    </form>
+
+                @endauth
                 </div>
             </div>
 
@@ -208,14 +224,13 @@ https://templatemo.com/tm-559-zay-shop
                                 </div>
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white" href="{{route('shopSingle')}}"><i class="far fa-heart"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="{{route('shopSingle')}}"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="{{route('shopSingle')}}"><i class="fas fa-cart-plus"></i></a></li>
+                                        <li><a class="btn btn-success text-white mt-2" href="{{route('shopSingle',$product->id)}}"><i class="far fa-eye"></i></a></li>
+                                        <li><a class="btn btn-success text-white mt-2" href="{{route('cart.addToSession',$product->id)}}"><i class="fas fa-cart-plus"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <a href="{{route('shopSingle')}}" class="h3 text-decoration-none">{{$product->title}}</a>
+                                <a href="{{route('shopSingle',$product->id)}}" class="h3 text-decoration-none">{{$product->title}}</a>
                                 <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
                                     <li>M/L/X/XL</li>
                                     <li class="pt-2">

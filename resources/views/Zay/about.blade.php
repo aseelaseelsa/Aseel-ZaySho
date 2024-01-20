@@ -89,14 +89,31 @@ https://templatemo.com/tm-559-zay-shop
                     <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
                         <i class="fa fa-fw fa-search text-dark mr-2"></i>
                     </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="#">
+                    @auth
+                    <a class="nav-icon position-relative text-decoration-none" href="{{route('cart.index')}}">
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                         <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
                     </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="#">
+                    @endauth
+
+                    <a class="nav-icon position-relative text-decoration-none me-5" href="#">
                         <i class="fa fa-fw fa-user text-dark mr-3"></i>
                         <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
                     </a>
+                    @auth
+                    <form action="{{route('order')}}" class="me-2">
+
+                     <button class="btn btn-sm btn-success text-light  ">Orders</button>
+                    </form>
+
+                @endauth
+                    @auth
+                    <form action="{{route('logout')}}" method="POST" >
+                     @csrf
+                     <button class="btn btn-sm btn-dark text-light  ">Logout</button>
+                    </form>
+
+                @endauth
                 </div>
             </div>
 

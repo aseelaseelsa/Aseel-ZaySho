@@ -42,13 +42,20 @@ $products = $productsQuery->where('status',true)->paginate(6);
 
 
 
-                       public function shopSingle (){
+public function shopSingle($id){
 
-    return view('Zay.shopSingle');
+$product = Product::findOrFail($id);
+return view('Zay.shopSingle' , compact('product') );
+
+    // return view('Zay.shopSingle');
     }
 
 
+    public function order(){
 
+        return view('Zay.showOrder');
+
+    }
 
 
 
@@ -63,8 +70,6 @@ $products = $productsQuery->where('status',true)->paginate(6);
 
         }
 
-            public function show ($id){
-            }
 
              public function edit ($id){
 

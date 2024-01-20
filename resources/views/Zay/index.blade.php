@@ -89,14 +89,30 @@ https://templatemo.com/tm-559-zay-shop
                     <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
                         <i class="fa fa-fw fa-search text-dark mr-2"></i>
                     </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="#">
+                    @auth
+                    <a class="nav-icon position-relative text-decoration-none" href="{{route('cart.index')}}">
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                         <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
                     </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="#">
+                    @endauth
+                    <a class="nav-icon position-relative text-decoration-none me-5" href="#">
                         <i class="fa fa-fw fa-user text-dark mr-3"></i>
                         <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
                     </a>
+                    @auth
+                    <form action="{{route('order')}}" class="me-2">
+
+                     <button class="btn btn-sm btn-success text-light  ">Orders</button>
+                    </form>
+
+                @endauth
+                    @auth
+                    <form action="{{route('logout')}}" method="POST" >
+                     @csrf
+                     <button class="btn btn-sm btn-dark text-light  ">Logout</button>
+                    </form>
+
+                @endauth
                 </div>
             </div>
 
@@ -249,7 +265,7 @@ https://templatemo.com/tm-559-zay-shop
             <div class="row">
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
-                        <a href="{{route('shopSingle')}}">
+                        <a href="">
                             <img src="./assets/img/feature_prod_01.jpg" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body">
@@ -263,7 +279,7 @@ https://templatemo.com/tm-559-zay-shop
                                 </li>
                                 <li class="text-muted text-right">$240.00</li>
                             </ul>
-                            <a href="{{route('shopSingle')}}" class="h2 text-decoration-none text-dark">Gym Weight</a>
+                            <a href="" class="h2 text-decoration-none text-dark">Gym Weight</a>
                             <p class="card-text">
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt in culpa qui officia deserunt.
                             </p>
@@ -273,7 +289,7 @@ https://templatemo.com/tm-559-zay-shop
                 </div>
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
-                        <a href="{{route('shopSingle')}}">
+                        <a href="">
                             <img src="./assets/img/feature_prod_02.jpg" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body">
@@ -287,7 +303,7 @@ https://templatemo.com/tm-559-zay-shop
                                 </li>
                                 <li class="text-muted text-right">$480.00</li>
                             </ul>
-                            <a href="{{route('shopSingle')}}" class="h2 text-decoration-none text-dark">Cloud Nike Shoes</a>
+                            <a href="" class="h2 text-decoration-none text-dark">Cloud Nike Shoes</a>
                             <p class="card-text">
                                 Aenean gravida dignissim finibus. Nullam ipsum diam, posuere vitae pharetra sed, commodo ullamcorper.
                             </p>
@@ -297,7 +313,7 @@ https://templatemo.com/tm-559-zay-shop
                 </div>
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
-                        <a href="{{route('shopSingle')}}">
+                        <a href="">
                             <img src="./assets/img/feature_prod_03.jpg" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body">
@@ -311,7 +327,7 @@ https://templatemo.com/tm-559-zay-shop
                                 </li>
                                 <li class="text-muted text-right">$360.00</li>
                             </ul>
-                            <a href="{{route('shopSingle')}}" class="h2 text-decoration-none text-dark">Summer Addides Shoes</a>
+                            <a href="" class="h2 text-decoration-none text-dark">Summer Addides Shoes</a>
                             <p class="card-text">
                                 Curabitur ac mi sit amet diam luctus porta. Phasellus pulvinar sagittis diam, et scelerisque ipsum lobortis nec.
                             </p>
